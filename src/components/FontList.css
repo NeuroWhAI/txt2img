@@ -1,0 +1,6 @@
+.ui.dropdown.font-list .text {
+  display: inline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
