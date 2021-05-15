@@ -1,5 +1,6 @@
 import React from 'react';
 import './TextCanvas.css';
+import { Button } from 'semantic-ui-react';
 
 type TextCanvasProps = {
   text: string,
@@ -33,6 +34,13 @@ class TextCanvas extends React.Component<TextCanvasProps> {
     this.ctx.fillText(this.props.text, this.props.width / 2, this.props.height / 2);
   }
   
+  downloadImage() {
+    let link = document.createElement('a');
+    link.download = 'txt2img.png';
+    link.href = this.canvasRef!.current!.toDataURL();
+    link.click();
+  }
+  
   componentDidMount() {
     this.ctx = this.canvasRef!.current!.getContext('2d');
     this.drawText();
@@ -46,13 +54,16 @@ class TextCanvas extends React.Component<TextCanvasProps> {
   
   render() {
     return (
-      <canvas
-        ref={this.canvasRef}
-        className='text-canvas'
-        width={this.props.width}
-        height={this.props.height}
-      >
-      </canvas>
+      <div>
+        <canvas
+          ref={this.canvasRef}
+          className='text-canvas'
+          width={this.props.width}
+          height={this.props.height}
+        >
+        </canvas>
+        <Button fluid onClick={() => this.downloadImage()}>Download</Button>
+      </div>
     );
   }
 }
