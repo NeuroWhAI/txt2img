@@ -16,7 +16,7 @@ class FontList extends React.Component<FontListProps> {
         options={options}
         value={this.props.font}
         onChange={(_e, { value }) => this.props.onChange(String(value) || 'Nanum Gothic')}
-        compact
+        compact search
       />
     );
   }
