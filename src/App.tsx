@@ -2,6 +2,7 @@ import React from 'react';
 import WebFont from 'webfontloader';
 import './App.css';
 import FontList from './components/FontList';
+import InputColor from './components/InputColor';
 import InputText from './components/InputText';
 import TextCanvas from './components/TextCanvas';
 
@@ -11,6 +12,8 @@ type AppState = {
   canvasHeight: number,
   fontSize: number,
   fontName: string,
+  bgColor: string,
+  fgColor: string,
 };
 
 class App extends React.Component<{}, AppState> {
@@ -20,6 +23,8 @@ class App extends React.Component<{}, AppState> {
     canvasHeight: 256,
     fontSize: 48,
     fontName: 'Nanum Gothic',
+    bgColor: '#FFFFFF',
+    fgColor: '#000000',
   };
 
   componentDidMount() {
@@ -51,7 +56,7 @@ class App extends React.Component<{}, AppState> {
       canvasHeight,
     });
   }
-  
+
   onFontChange(fontName: string) {
     WebFont.load({
       google: {
@@ -71,7 +76,19 @@ class App extends React.Component<{}, AppState> {
       fontSize,
     });
   }
-  
+
+  onBgColorChange(bgColor: string) {
+    this.setState({
+      bgColor,
+    });
+  }
+
+  onFgColorChange(fgColor: string) {
+    this.setState({
+      fgColor,
+    });
+  }
+
   render() {
     const s = this.state;
     return (
@@ -97,9 +114,27 @@ class App extends React.Component<{}, AppState> {
             <InputText type="number" text={s.fontSize.toString()} onChange={(text) => this.onFontSizeChange(parseInt(text))} />
           </div>
         </div>
+        <div className="col2-box">
+          <div className="named-input-box">
+            Fore :
+            <InputColor color={s.fgColor} onChange={(color) => this.onFgColorChange(color)} />
+          </div>
+          <div className="named-input-box">
+            Back :
+            <InputColor color={s.bgColor} onChange={(color) => this.onBgColorChange(color)} />
+          </div>
+        </div>
         <InputText type="text" text={s.text} onChange={(text) => this.onTextChange(text)} />
         <div className="canvas-box">
-          <TextCanvas text={s.text} width={s.canvasWidth} height={s.canvasHeight} fontSize={s.fontSize} fontName={s.fontName} />
+          <TextCanvas
+            text={s.text}
+            width={s.canvasWidth}
+            height={s.canvasHeight}
+            fontSize={s.fontSize}
+            fontName={s.fontName}
+            fgColor={s.fgColor}
+            bgColor={s.bgColor}
+          />
         </div>
       </div>
     );

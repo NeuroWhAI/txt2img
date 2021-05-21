@@ -8,6 +8,8 @@ type TextCanvasProps = {
   height: number,
   fontSize: number,
   fontName: string,
+  fgColor: string,
+  bgColor: string,
 }
 
 class TextCanvas extends React.Component<TextCanvasProps> {
@@ -23,13 +25,13 @@ class TextCanvas extends React.Component<TextCanvasProps> {
     this.ctx.clearRect(0, 0, this.props.width, this.props.height);
     
     // Background.
-    this.ctx.fillStyle = 'white';
+    this.ctx.fillStyle = this.props.bgColor;
     this.ctx.fillRect(0, 0, this.props.width, this.props.height);
 
     // Text.
     this.ctx.textBaseline = 'middle';
     this.ctx.textAlign = 'center';
-    this.ctx.fillStyle = 'black';
+    this.ctx.fillStyle = this.props.fgColor;
     this.ctx.font = `${this.props.fontSize}px ${this.props.fontName}`;
     this.ctx.fillText(this.props.text, this.props.width / 2, this.props.height / 2);
   }
