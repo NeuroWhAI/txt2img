@@ -52,8 +52,6 @@ class TextCanvas extends React.Component<TextCanvasProps> {
     popup?.document.body.appendChild(img);
 
     a.click();
-
-    setTimeout(() => popup?.close(), 100);
 }
   
   componentDidMount() {
