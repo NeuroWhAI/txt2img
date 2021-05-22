@@ -39,13 +39,21 @@ class TextCanvas extends React.Component<TextCanvasProps> {
   downloadImage() {
     let url = this.canvasRef!.current!.toDataURL('image/png')
       .replace(/^data:image\/png/, 'data:application/octet-stream');
+
     let a = document.createElement('a');
     a.setAttribute('download', 'txt2img.png');
     a.setAttribute('href', url);
+
+    let img = document.createElement('img');
+    img.setAttribute('src', url);
+
     let popup = window.open();
     popup?.document.body.appendChild(a);
+    popup?.document.body.appendChild(img);
+
     a.click();
-    popup?.close();
+
+    setTimeout(() => popup?.close(), 100);
 }
   
   componentDidMount() {
