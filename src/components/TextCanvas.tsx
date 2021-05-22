@@ -1,6 +1,7 @@
 import React from 'react';
 import './TextCanvas.css';
 import { Button } from 'semantic-ui-react';
+import JsFileDownloader from 'js-file-downloader';
 
 type TextCanvasProps = {
   text: string,
@@ -37,12 +38,15 @@ class TextCanvas extends React.Component<TextCanvasProps> {
   }
   
   downloadImage() {
-    let link = document.createElement('a');
-    link.download = 'txt2img.png';
     this.canvasRef!.current!.toBlob((blob) => {
       let url = URL.createObjectURL(blob);
-      link.setAttribute('href', url);
-      link.click();
+      new JsFileDownloader({
+        url,
+        filename: 'txt2img.png',
+        autoStart: false,
+      })
+      .start()
+      .catch((err) => alert(err));
     });
 }
   
