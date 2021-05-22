@@ -1,6 +1,7 @@
 import React from 'react';
 import './TextCanvas.css';
 import { Button } from 'semantic-ui-react';
+import { IsWebApp } from '../utils';
 
 type TextCanvasProps = {
   text: string,
@@ -43,13 +44,16 @@ class TextCanvas extends React.Component<TextCanvasProps> {
     let a = document.createElement('a');
     a.setAttribute('download', 'txt2img.png');
     a.setAttribute('href', url);
+   
+    if (IsWebApp()) {
+      let img = document.createElement('img');
+      img.setAttribute('src', url);
 
-    let img = document.createElement('img');
-    img.setAttribute('src', url);
-
-    let popup = window.open();
-    popup?.document.body.appendChild(a);
-    popup?.document.body.appendChild(img);
+      let popup = window.open();
+      popup?.document.write("<p>Close this popup after downloading.</p>");
+      popup?.document.body.appendChild(a);
+      a.appendChild(img);
+    }
 
     a.click();
 }
