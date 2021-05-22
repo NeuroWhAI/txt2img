@@ -5,10 +5,33 @@ object-assign
 */
 
 /*!
+         * JS File Downloader v 1.1.19
+         * https://github.com/AleeeKoi/js-file-downloader
+         *
+         * Copyright Alessandro Pellizzari
+         * Released under the MIT license
+         * http://opensource.org/licenses/MIT
+         */
+
+/*!
   Copyright (c) 2015 Jed Watson.
   Based on code that is Copyright 2013-2015, Facebook, Inc.
   All rights reserved.
 */
+
+/*! ./exception */
+
+/*! exports provided: DownloadException, downloadException */
+
+/*! exports provided: default */
+
+/*!**********************!*\
+        !*** ./src/index.js ***!
+        \**********************/
+
+/*!**************************!*\
+        !*** ./src/exception.js ***!
+        \**************************/
 
 /** @license React v0.20.2
  * scheduler.production.min.js
