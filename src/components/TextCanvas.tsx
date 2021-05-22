@@ -38,16 +38,15 @@ class TextCanvas extends React.Component<TextCanvasProps> {
   }
   
   downloadImage() {
-    this.canvasRef!.current!.toBlob((blob) => {
-      let url = URL.createObjectURL(blob);
-      new JsFileDownloader({
-        url,
-        filename: 'txt2img.png',
-        autoStart: false,
-      })
-      .start()
-      .catch((err) => alert(err));
-    });
+    let url = this.canvasRef!.current!.toDataURL('image/png')
+      .replace(/^data:image\/png/, 'data:application/octet-stream');
+    new JsFileDownloader({
+      url,
+      filename: 'txt2img.png',
+      autoStart: false,
+    })
+    .start()
+    .catch((err) => alert(err));
 }
   
   componentDidMount() {
