@@ -1,7 +1,6 @@
 import React from 'react';
 import './TextCanvas.css';
 import { Button } from 'semantic-ui-react';
-import JsFileDownloader from 'js-file-downloader';
 
 type TextCanvasProps = {
   text: string,
